@@ -4,6 +4,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const authRoute = require("./routes/AuthRoute");
+const cookieParser = require("cookie-parser");
 
 const { HoldingsModel } = require("./model/HoldingsModel");
 
@@ -190,6 +192,18 @@ app.use(bodyParser.json());
 // });
 
 
+app.use(
+  cors({
+    origin: ["http://localhost:3000", "http://localhost:3001"], // Frontend aur Dashboard ke URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true, // Cookies allowed
+  })
+);
+app.use(cookieParser());
+app.use(express.json());
+
+app.use("/", authRoute);
+
 app.get('/allHoldings', async(req, res) =>{
   let allHoldings = await HoldingsModel.find({});
   res.json(allHoldings);
@@ -214,7 +228,7 @@ app.post('/newOrder', async(req, res)=>{
 });
 
 app.listen(PORT, () => {
-  console.log("App started!");
+  console.log(`Server is listening on port ${PORT}`);
   mongoose.connect(uri);
   console.log("DB connected");
 });

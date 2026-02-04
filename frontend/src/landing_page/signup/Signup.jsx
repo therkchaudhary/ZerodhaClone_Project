@@ -3,7 +3,7 @@ import InvestmentOptions from "./InvestmentOptions";
 import Steps from "./Steps";
 import Benefits from "./Benefits";
 import AccountTypes from "./AccountTypes";
-import OpenAcc from "./OpenAcc"
+import OpenAcc from "./OpenAcc";
 
 const Signup = () => {
   return (

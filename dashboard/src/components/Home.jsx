@@ -1,9 +1,34 @@
-import React from "react";
-
+import React, { useEffect } from "react";
 import Dashboard from "./Dashboard";
 import TopBar from "./TopBar";
+import axios from "axios"; // API call karne ke liye
 
 const Home = () => {
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // Backend ke verification route par request bhejo
+        const { data } = await axios.post(
+          "http://localhost:4000", // Aapka Backend URL
+          {},
+          { withCredentials: true } // Isse cookies (token) saath mein jayenge
+        );
+
+        // Agar user verify nahi hua (status: false), toh login page par bhej do
+        if (!data.status) {
+          window.location.href = "http://localhost:3000/login"; 
+        }
+      } catch (err) {
+        // Agar koi error aaye (server band hai ya network issue), tab bhi login par bhejo
+        console.log(err);
+        window.location.href = "http://localhost:3000/login";
+      }
+    };
+
+    checkAuth(); // Function ko call karo
+  }, []);
+
   return (
     <>
       <TopBar />

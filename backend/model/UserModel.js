@@ -22,8 +22,12 @@ const userSchema = new mongoose.Schema({
 });
 
 // Password ko save hone se pehle hash (encrypt) karein
-userSchema.pre("save", async function () {
+userSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
   this.password = await bcrypt.hash(this.password, 12);
+  next();
 });
 
 module.exports = mongoose.model("User", userSchema);

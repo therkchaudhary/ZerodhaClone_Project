@@ -26,7 +26,7 @@ const Login = () => {
         {
           ...inputValue,
         },
-        { withCredentials: true } // Important for cookies
+        { withCredentials: true }, // Important for cookies
       );
       const { success, message } = data;
       if (success) {
@@ -46,7 +46,28 @@ const Login = () => {
     <div className="form_container">
       <h2>Login Account</h2>
       <form onSubmit={handleSubmit}>
-        {/* Input fields for Email and Password */}
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={email}
+            placeholder="Enter your email"
+            onChange={handleOnChange}
+            required // <-- Zaroori hai
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            name="password"
+            value={password}
+            placeholder="Enter your password"
+            onChange={handleOnChange}
+            required // <-- Zaroori hai
+          />
+        </div>
         <button type="submit">Submit</button>
       </form>
       <ToastContainer />

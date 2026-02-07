@@ -12,7 +12,7 @@ const { HoldingsModel } = require("./model/HoldingsModel");
 const { PositionsModel } = require("./model/PositionsModel");
 const { OrdersModel } = require("./model/OrdersModel");
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4000;
 const uri = process.env.MONGO_URL;
 
 const app = express();
@@ -148,8 +148,6 @@ app.use(bodyParser.json());
 //   res.send("Done!");
 // });
 
-
-
 // app.get("/addPositions", async (req, res) => {
 //   let tempPositons = [
 //     {
@@ -194,27 +192,27 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"], // Frontend aur Dashboard ke URL
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true, // Cookies allowed
-  })
+    origin: "http://localhost:3000", // Specific origin batana zaroori hai, '*' nahi chalega
+    credentials: true, // Frontend se cookies/headers accept karne ke liye
+    methods: ["GET", "POST", "PUT", "DELETE"], // Allowed methods
+  }),
 );
 app.use(cookieParser());
 app.use(express.json());
 
 app.use("/", authRoute);
 
-app.get('/allHoldings', async(req, res) =>{
+app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});
   res.json(allHoldings);
-})
+});
 
-app.get('/allPositions', async(req, res) =>{
+app.get("/allPositions", async (req, res) => {
   let allPositions = await PositionsModel.find({});
   res.json(allPositions);
-})
+});
 
-app.post('/newOrder', async(req, res)=>{
+app.post("/newOrder", async (req, res) => {
   let newOrder = new OrdersModel({
     name: req.body.name,
     qty: req.body.qty,

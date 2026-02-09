@@ -1,28 +1,28 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
     <footer style={{ backgroundColor: "rgb(250, 250, 250)" }}>
       <div className="container border-top mt-5">
         <div className="row mt-5">
-          <div className="col">
-            <img src="media/logo.svg" style={{ width: "50%" }} alt="" />
-            <p>
-              {" "}
+          <div className="col-12 col-md-3 mt-5 mt-md-0 text-center text-md-start">
+            <img src="media/logo.svg" style={{ width: "50%" }} alt="Zerodha Logo" />
+            <p className="mt-3">
               &copy; 2010 - 2025, Not Zerodha Broking Ltd. All rights reserved.
             </p>
           </div>
-          <div className="col">
+          <div className="col-12 col-md-3 mt-5 mt-md-0 text-center text-md-start">
             <p className="fw-bold">Account</p>
-            <a href="" className="d-block mb-2 footer-link">
+            <Link to="/signup" className="d-block mb-2 footer-link" style={{ textDecoration: "none" }}>
               Open demat account
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
+            </Link>
+            <Link to="/signup" className="d-block mb-2 footer-link" style={{ textDecoration: "none" }}>
               Minor demat account
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
+            </Link>
+            <Link to="/signup" className="d-block mb-2 footer-link" style={{ textDecoration: "none" }}>
               NRI demat account
-            </a>
+            </Link>
             <a href="" className="d-block mb-2 footer-link">
               Commodity
             </a>
@@ -40,7 +40,7 @@ function Footer() {
             </a>
           </div>
 
-          <div className="col">
+          <div className="col-12 col-md-3 mt-5 mt-md-0 text-center text-md-start">
             <p className="fw-bold">Support</p>
             <a href="" className="d-block mb-2 footer-link">
               Contact
@@ -68,7 +68,7 @@ function Footer() {
             </a>
           </div>
 
-          <div className="col">
+          <div className="col-12 col-md-3 mt-5 mt-md-0 text-center text-md-start">
             <p className="fw-bold">Company</p>
             <a href="" className="d-block mb-2 footer-link">
               About
@@ -90,28 +90,6 @@ function Footer() {
             </a>
             <a href="" className="d-block mb-2 footer-link">
               Open source
-            </a>
-          </div>
-
-          <div className="col">
-            <p className="fw-bold">Quick links</p>
-            <a href="" className="d-block mb-2 footer-link">
-              Upcoming IPOs
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
-              Brokerage charges
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
-              Market holidays
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
-              Economic calendar
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
-              Calculators
-            </a>
-            <a href="" className="d-block mb-2 footer-link">
-              Markets
             </a>
             <a href="" className="d-block mb-2 footer-link">
               Sectors

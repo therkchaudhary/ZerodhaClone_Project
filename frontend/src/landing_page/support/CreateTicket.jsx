@@ -6,9 +6,9 @@ function CreateTicket() {
       <div className="row p-5">
         <h1 className="fs-2">To create a ticket, select a relevent topic</h1>
 
-        <div className="col-4 p-5 mt-3 mb-3">
+        <div className="col-12 col-md-4 p-3 p-md-5 mt-3 mb-3">
           <h4 className="">
-            <i class="fa-solid fa-circle-plus"></i>
+            <i className="fa-solid fa-circle-plus"></i>
             Account Opening
           </h4>
           <a
@@ -46,12 +46,12 @@ function CreateTicket() {
           >
             Glossary
           </a>
-          
+
         </div>
 
-        <div className="col-4 p-5 mt-3 mb-3">
+        <div className="col-12 col-md-4 p-3 p-md-5 mt-3 mb-3">
           <h4 className="">
-            <i class="fa-regular fa-circle-user"></i>
+            <i className="fa-regular fa-circle-user"></i>
             Your Zerodha Account
           </h4>
           <a
@@ -91,9 +91,9 @@ function CreateTicket() {
           </a>
         </div>
 
-        <div className="col-4 p-5 mt-3 mb-3">
+        <div className="col-12 col-md-4 p-3 p-md-5 mt-3 mb-3">
           <h4 className="">
-            <i class="fa-solid fa-chart-line"></i>
+            <i className="fa-solid fa-chart-line"></i>
             Kite
           </h4>
           <a
@@ -140,9 +140,9 @@ function CreateTicket() {
           </a>
         </div>
 
-        <div className="col-4 p-5 mt-3 mb-3">
+        <div className="col-12 col-md-4 p-3 p-md-5 mt-3 mb-3">
           <h4 className="">
-            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <i className="fa-solid fa-indian-rupee-sign"></i>
             Funds
           </h4>
           <a
@@ -175,9 +175,9 @@ function CreateTicket() {
           </a>
         </div>
 
-        <div className="col-4 p-5 mt-3 mb-3"> 
+        <div className="col-12 col-md-4 p-3 p-md-5 mt-3 mb-3">
           <h4 className="">
-            <i class="fa-solid fa-globe"></i>
+            <i className="fa-solid fa-globe"></i>
             Console
           </h4>
           <a
@@ -224,9 +224,9 @@ function CreateTicket() {
           </a>
         </div>
 
-        <div className="col-4 p-5 mt-3 mb-3">
+        <div className="col-12 col-md-4 p-3 p-md-5 mt-3 mb-3">
           <h4 className="">
-            <i class="fa-solid fa-coins"></i>
+            <i className="fa-solid fa-coins"></i>
             Coin
           </h4>
           <a

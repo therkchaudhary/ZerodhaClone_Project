@@ -8,12 +8,12 @@ const Steps = () => {
 
         <div className="row justify-content-center">
           <div className="row">
-            <div className="col-6">
+            <div className="col-12 col-md-6 text-center">
               <img
                 src="media/steps-acop.svg"
-                className="text-right"
-                style={{ maxWidth: "70%", marginLeft:'120px'}}
-                alt=""
+                className="img-fluid mb-5 mb-md-0"
+                style={{ maxWidth: "70%" }}
+                alt="Steps to Open Account"
               />
             </div>
             <div className="col-md-6">

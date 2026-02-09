@@ -1,17 +1,26 @@
 import React, { useState } from "react";
-
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
-  const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+
 
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
   };
 
-  const handleProfileClick = (index) => {
-    setIsProfileDropdownOpen(!isProfileDropdownOpen);
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:4000/logout",
+        {},
+        { withCredentials: true }
+      );
+      window.location.href = "http://localhost:3000/login";
+    } catch (error) {
+      console.log("Error logging out", error);
+    }
   };
 
   const menuClass = "menu";
@@ -90,9 +99,9 @@ const Menu = () => {
           </li>
         </ul>
         <hr />
-        <div className="profile" onClick={handleProfileClick}>
+        <div className="profile" onClick={handleLogout} style={{ cursor: "pointer" }}>
           <div className="avatar">ZU</div>
-          <p className="username">USERID</p>
+          <p className="username">Logout</p>
         </div>
       </div>
     </div>

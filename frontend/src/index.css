@@ -21,7 +21,8 @@ code {
 .footer-link {
   text-decoration: none;
   line-height: 2;
-  color: #444444; /* Zerodha-like blue */
+  color: #444444;
+  /* Zerodha-like blue */
 }
 
 .footer-link:hover {
@@ -124,7 +125,69 @@ code {
   font-size: 14px;
   color: #fff;
 }
-.featured-list li a{
+
+.featured-list li a {
   line-height: 2.5;
   color: #fff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .navbar-brand img {
+    width: 50% !important;
+    /* Increase logo size on mobile */
+  }
+
+  .nav-link {
+    margin-left: 0;
+    /* Reset margin for vertical stacking */
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  /* Hero Section */
+  .hero-container h1 {
+    font-size: 2rem;
+  }
+
+  .hero-container p {
+    font-size: 1rem;
+  }
+
+  .hero-btn {
+    width: 100% !important;
+    /* Full width buttons */
+  }
+
+  /* General Utilities */
+  .mb-mobile-0 {
+    margin-bottom: 0 !important;
+  }
+
+  .mt-mobile-2 {
+    margin-top: 0.5rem !important;
+  }
+
+  .text-center-mobile {
+    text-align: center !important;
+  }
+
+  /* Footer */
+  .footer-link {
+    text-align: center;
+  }
+
+  footer .text-center-mobile {
+    text-align: center !important;
+  }
+
+  /* Support Page */
+  .support-top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .support-top h4 {
+    margin-bottom: 1rem;
+  }
 }

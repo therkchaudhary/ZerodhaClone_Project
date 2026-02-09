@@ -4,11 +4,14 @@ import Steps from "./Steps";
 import Benefits from "./Benefits";
 import AccountTypes from "./AccountTypes";
 import OpenAcc from "./OpenAcc";
+import SignupForm from "./SignupForm";
 
 const Signup = () => {
   return (
     <>
-      <Hero />
+      <Hero>
+        <SignupForm />
+      </Hero>
       <InvestmentOptions />
       <Steps />
       <Benefits />

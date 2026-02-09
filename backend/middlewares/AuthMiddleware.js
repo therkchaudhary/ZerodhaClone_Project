@@ -5,7 +5,8 @@ const jwt = require("jsonwebtoken");
 module.exports.userVerification = (req, res) => {
   // 1. Browser ki cookies se token nikalo
   const token = req.cookies.token;
-  
+  console.log("Verifying token. Cookies:", req.cookies); // Added log
+
   // 2. Agar token nahi hai, to 'false' return kro
   if (!token) {
     return res.json({ status: false });
@@ -19,9 +20,9 @@ module.exports.userVerification = (req, res) => {
     } else {
       // Token sahi hai, user ko dhoondo
       const user = await User.findById(data.id);
-      if (user) 
+      if (user)
         return res.json({ status: true, user: user.username });
-      else 
+      else
         return res.json({ status: false });
     }
   });

@@ -10,6 +10,7 @@ const LoginForm = () => {
         password: "",
     });
     const { email, password } = inputValue;
+
     const handleOnChange = (e) => {
         const { name, value } = e.target;
         setInputValue({
@@ -33,7 +34,11 @@ const LoginForm = () => {
                 toast.success(message);
                 setTimeout(() => {
                     const token = data.token;
-                    window.location.href = `http://localhost:3001?token=${token}`; // Redirect to Dashboard with token
+                    
+                    // FIX: Replace localhost with your LIVE Dashboard URL
+                    const dashboardUrl = "https://zerodhaclone-dashboard-gzx3.onrender.com"; 
+                    
+                    window.location.href = `${dashboardUrl}?token=${token}`; 
                 }, 1000);
             } else {
                 toast.error(message);

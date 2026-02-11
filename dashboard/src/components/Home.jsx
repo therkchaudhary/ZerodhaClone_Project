@@ -29,12 +29,12 @@ const Home = () => {
 
         // Agar user verify nahi hua (status: false), toh login page par bhej do
         if (!data.status) {
-          window.location.href = "http://localhost:3000/login";
+          window.location.href = "https://zerodhaclone-project.onrender.com";
         }
       } catch (err) {
         // Agar koi error aaye (server band hai ya network issue), tab bhi login par bhejo
         console.log(err);
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = "https://zerodhaclone-project.onrender.com";
       }
     };
 

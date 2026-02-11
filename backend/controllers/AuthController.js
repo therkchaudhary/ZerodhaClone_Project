@@ -1,6 +1,6 @@
 const User = require("../model/UserModel");
 const { createSecretToken } = require("../util/SecretToken");
-const bcrypt = require("bcryptjs"); // Ensure bcryptjs is used as per package.json
+const bcrypt = require("bcryptjs");
 
 module.exports.Signup = async (req, res) => {
   try {
@@ -12,14 +12,14 @@ module.exports.Signup = async (req, res) => {
     const user = await User.create({ email, password, username, createdAt });
     const token = createSecretToken(user._id);
 
-    // Determine domain for cookie if needed, but for localhost it's tricky with ports.
-    // Ideally we don't set domain for localhost to allow sharing if on same domain.
-    // Browsers treat ports on localhost as same site often for cookies if domain is not set (host-only).
-
+    // Render/Production Cookie Settings
     res.cookie("token", token, {
       withCredentials: true,
-      httpOnly: false, // User requested to read it potentially, leaving false.
+      httpOnly: false, 
+      secure: true,    // Production mein HTTPS zaroori hai
+      sameSite: "none", // Cross-site access allow karta hai
     });
+
     res
       .status(201)
       .json({ message: "User signed in successfully", success: true, user, token });
@@ -44,10 +44,15 @@ module.exports.Login = async (req, res) => {
       return res.json({ message: 'Incorrect password or email' })
     }
     const token = createSecretToken(user._id);
+
+    // Render/Production Cookie Settings
     res.cookie("token", token, {
       withCredentials: true,
       httpOnly: false,
+      secure: true,    // Production mein HTTPS zaroori hai
+      sameSite: "none", // Cross-site access allow karta hai
     });
+
     res.status(201).json({ message: "User logged in successfully", success: true, token });
   } catch (error) {
     console.error(error);
@@ -56,9 +61,12 @@ module.exports.Login = async (req, res) => {
 }
 
 module.exports.Logout = (req, res) => {
+  // Clear Cookie with same options used during setting
   res.clearCookie("token", {
     withCredentials: true,
     httpOnly: false,
+    secure: true,
+    sameSite: "none",
   });
   res.status(201).json({ message: "User logged out successfully", success: true });
 };

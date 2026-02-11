@@ -5,21 +5,30 @@ import axios from "axios";
 const Menu = () => {
   const [selectedMenu, setSelectedMenu] = useState(0);
 
-
   const handleMenuClick = (index) => {
     setSelectedMenu(index);
   };
 
   const handleLogout = async () => {
     try {
+      // 1. Backend logout call
       await axios.post(
         "https://zerodhaclone-backend-s41p.onrender.com/logout",
         {},
         { withCredentials: true }
       );
-      window.location.href = "http://localhost:3000/login";
+
+      // 2. Clear cookies manually for safety (Production domain requires path=/)
+      document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      localStorage.clear();
+
+      // 3. FIX: Redirect to LIVE Frontend Login Page (Localhost hata diya)
+      window.location.href = "https://zerodhaclone-project.onrender.com"; 
+      
     } catch (error) {
       console.log("Error logging out", error);
+      // Agar error aaye tab bhi login par bhej dein taaki user stuck na ho
+      window.location.href = "https://zerodhaclone-project.onrender.com";
     }
   };
 
@@ -28,7 +37,7 @@ const Menu = () => {
 
   return (
     <div className="menu-container">
-      <img src="logo.png" style={{ width: "50px" }} />
+      <img src="logo.png" style={{ width: "50px" }} alt="Logo" />
       <div className="menus">
         <ul>
           <li>
@@ -78,7 +87,7 @@ const Menu = () => {
           <li>
             <Link
               style={{ textDecoration: "none" }}
-              to="funds"
+              to="/funds"
               onClick={() => handleMenuClick(4)}
             >
               <p className={selectedMenu === 4 ? activeMenuClass : menuClass}>

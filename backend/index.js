@@ -16,9 +16,15 @@ const uri = process.env.MONGO_URL;
 
 const app = express();
 
+// --- CORRECTION 1: CORS Options for Production ---
 const corsOptions = {
-  origin: ["http://localhost:3000", "http://localhost:3001"], // Allow both Frontend and Dashboard
-  credentials: true, // Allow cookies
+  origin: [
+    "http://localhost:3000", 
+    "http://localhost:3001",
+    "https://zerodhaclone-project.onrender.com",  // Apne live frontend ka URL daalein
+    "https://zerodhaclone-dashboard-gzx3.onrender.com"  // Apne live dashboard ka URL daalein
+  ],
+  credentials: true, 
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
 
@@ -27,11 +33,9 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.json());
 
-// Logging middleware
+// Logging middleware (Debugging ke liye helpful hai)
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
-  console.log("Origin:", req.headers.origin);
-  console.log("Cookies:", req.cookies);
   next();
 });
 
@@ -39,29 +43,39 @@ app.use((req, res, next) => {
 app.use("/", authRoute);
 
 app.get("/allHoldings", async (req, res) => {
-  let allHoldings = await HoldingsModel.find({});
-  res.json(allHoldings);
+  try {
+    let allHoldings = await HoldingsModel.find({});
+    res.json(allHoldings);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.get("/allPositions", async (req, res) => {
-  let allPositions = await PositionsModel.find({});
-  res.json(allPositions);
+  try {
+    let allPositions = await PositionsModel.find({});
+    res.json(allPositions);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 app.post("/newOrder", async (req, res) => {
-  let newOrder = new OrdersModel({
-    name: req.body.name,
-    qty: req.body.qty,
-    price: req.body.price,
-    mode: req.body.mode,
-  });
-
-  newOrder.save();
-
-  res.send("Order saved!");
+  try {
+    let newOrder = new OrdersModel({
+      name: req.body.name,
+      qty: req.body.qty,
+      price: req.body.price,
+      mode: req.body.mode,
+    });
+    await newOrder.save(); // CORRECTION 2: await use karein
+    res.send("Order saved!");
+  } catch (err) {
+    res.status(500).send("Error saving order");
+  }
 });
 
-// Database Connection and Server Start
+// Database Connection
 mongoose.connect(uri)
   .then(() => {
     console.log("DB connected");

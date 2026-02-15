@@ -3,6 +3,9 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 
+// FIX: Global credentials enabled for cross-origin requests
+axios.defaults.withCredentials = true;
+
 const LoginForm = () => {
     const navigate = useNavigate();
     const [inputValue, setInputValue] = useState({
@@ -25,27 +28,34 @@ const LoginForm = () => {
             const { data } = await axios.post(
                 "https://zerodhaclone-backend-s41p.onrender.com/login",
                 {
-                    ...inputValue,
+                    email,
+                    password,
                 },
-                { withCredentials: true },
+                { 
+                    headers: { "Content-Type": "application/json" },
+                    withCredentials: true 
+                }
             );
-            const { success, message } = data;
+            
+            const { success, message, token } = data;
+            
             if (success) {
                 toast.success(message);
+                
+                // Dashboard URL ko exactly wahi rakhein jo Render par live hai
+                const dashboardUrl = "https://zerodhaclone-dashboard-gzx3.onrender.com";
+                
                 setTimeout(() => {
-                    const token = data.token;
-                    
-                    // FIX: Replace localhost with your LIVE Dashboard URL
-                    const dashboardUrl = "https://zerodhaclone-dashboard-gzx3.onrender.com"; 
-                    
+                    // Token ko query parameter mein bhej rahe hain taaki dashboard access kar sake
                     window.location.href = `${dashboardUrl}?token=${token}`; 
                 }, 1000);
             } else {
-                toast.error(message);
+                toast.error(message || "Login failed");
             }
         } catch (error) {
-            console.log(error);
-            toast.error("An error occurred during login");
+            console.error("Login Error:", error);
+            const errorMsg = error.response?.data?.message || "Internal Server Error or CORS blocked";
+            toast.error(errorMsg);
         }
     };
 

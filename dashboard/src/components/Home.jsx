@@ -22,7 +22,7 @@ const Home = () => {
       try {
         // Backend ke verification route par request bhejo
         const { data } = await axios.post(
-          "https://zerodhaclone-backend-s41p.onrender.com", // Aapka Backend URL
+          "https://zerodhaclone-backend-s41p.onrender.com/verify", // Aapka Backend URL
           {},
           { withCredentials: true } // Isse cookies (token) saath mein jayenge
         );

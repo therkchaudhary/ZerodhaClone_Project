@@ -25,7 +25,7 @@ const corsOptions = {
     "https://zerodhaclone-dashboard-gzx3.onrender.com"  // Apne live dashboard ka URL daalein
   ],
   credentials: true, 
-  methods: ["GET", "POST", "PUT", "DELETE"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 

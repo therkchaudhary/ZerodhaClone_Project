@@ -15,10 +15,9 @@ module.exports.Signup = async (req, res) => {
     // FIXED: Added maxAge so cookie survives a refresh
     res.cookie("token", token, {
       path: "/",
-      withCredentials: true,
-      httpOnly: false, 
+      httpOnly: false,
       secure: true,    // HTTPS required for 'none'
-      sameSite: "none", 
+      sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000, // 24 hours (milliseconds)
     });
 
@@ -53,7 +52,6 @@ module.exports.Login = async (req, res) => {
     // FIXED: Added maxAge to prevent logout on page refresh
     res.cookie("token", token, {
       path: "/",
-      withCredentials: true,
       httpOnly: false,
       secure: true,
       sameSite: "none",
@@ -71,7 +69,6 @@ module.exports.Logout = (req, res) => {
   // FIXED: Path must match the setting path to be deleted
   res.clearCookie("token", {
     path: "/",
-    withCredentials: true,
     httpOnly: false,
     secure: true,
     sameSite: "none",

@@ -12,19 +12,25 @@ const Home = () => {
       const token = queryParams.get("token");
 
       if (token) {
-        // Set cookie manually
-        // Note: HttpOnly is false so we can set it. Backend allows this.
+        // Store in localStorage for robust access
+        localStorage.setItem("token", token);
+        // Set cookie manually (optional fallback)
         document.cookie = `token=${token}; path=/; max-age=86400`;
-        // Remove token from URL for cleaner look
+        // Remove token from URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
 
       try {
         // Backend ke verification route par request bhejo
         const { data } = await axios.post(
-          "https://zerodhaclone-backend-s41p.onrender.com/verify", // Aapka Backend URL
+          "https://zerodhaclone-backend-s41p.onrender.com/verify",
           {},
-          { withCredentials: true } // Isse cookies (token) saath mein jayenge
+          {
+            withCredentials: true,
+            headers: {
+              "Authorization": `Bearer ${token || localStorage.getItem("token")}`
+            }
+          }
         );
 
         // Agar user verify nahi hua (status: false), toh login page par bhej do

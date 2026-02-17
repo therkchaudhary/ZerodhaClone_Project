@@ -19,12 +19,12 @@ const app = express();
 // --- CORRECTION 1: CORS Options for Production ---
 const corsOptions = {
   origin: [
-    "http://localhost:3000", 
+    "http://localhost:3000",
     "http://localhost:3001",
-    "https://zerodhaclone-project.onrender.com",  // Apne live frontend ka URL daalein
-    "https://zerodhaclone-dashboard-gzx3.onrender.com"  // Apne live dashboard ka URL daalein
+    "https://zerodhaclone-project.onrender.com",
+    "https://zerodhaclone-dashboard-gzx3.onrender.com"
   ],
-  credentials: true, 
+  credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };

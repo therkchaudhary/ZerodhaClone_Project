@@ -15,6 +15,8 @@ const PORT = process.env.PORT || 4000;
 const uri = process.env.MONGO_URL;
 
 const app = express();
+// Trust the proxy (Render/Heroku) to correctly handle secure cookies
+app.set("trust proxy", 1);
 
 // --- CORRECTION 1: CORS Options for Production ---
 const corsOptions = {

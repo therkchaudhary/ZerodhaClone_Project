@@ -3,12 +3,15 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 module.exports.userVerification = (req, res) => {
-  // 1. Check token in Cookies or Authorization Header
-  let token = req.cookies.token;
-
-  // Fallback: Check Authorization header (Bearer <token>)
-  if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
+  // 1. Check Authorization Header (Priority for Dashboard/API)
+  let token;
+  if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
     token = req.headers.authorization.split(" ")[1];
+  }
+
+  // 2. Fallback: Check Cookies (Browser/Login)
+  if (!token && req.cookies.token) {
+    token = req.cookies.token;
   }
 
   // console.log("Verifying token. Source:", token ? "Found" : "Missing"); 

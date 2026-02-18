@@ -7,6 +7,7 @@ router.post("/login", Login);
 router.post("/logout", Logout);
 
 // Ye naya route add karein verification ke liye
-router.post("/", userVerification);
+// Ye naya route add karein verification ke liye
+router.post("/verify", userVerification);
 
 module.exports = router;

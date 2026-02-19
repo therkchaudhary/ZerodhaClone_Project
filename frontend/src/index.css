@@ -191,3 +191,65 @@ code {
     margin-bottom: 1rem;
   }
 }
+
+/* Added for mobile responsiveness */
+@media (max-width: 768px) {
+  /* Navbar adjustments */
+  .navbar-brand img {
+    width: 50% !important; /* Increase logo size on mobile */
+  }
+
+  .nav-link {
+    margin-left: 0; /* Reset margin for vertical stacking */
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .navbar-toggler {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.25rem;
+  }
+
+  /* Hero Section */
+  .hero-container h1 {
+    font-size: 2rem;
+  }
+
+  .hero-container p {
+    font-size: 1rem;
+  }
+  
+  /* Hero Button - Override inline style with !important */
+  .hero-btn {
+    width: 100% !important; 
+    display: block;
+  }
+  
+  /* General Utilities */
+  .mb-mobile-0 {
+    margin-bottom: 0 !important;
+  }
+  
+  .mt-mobile-2 {
+    margin-top: 0.5rem !important;
+  }
+  
+  .text-center-mobile {
+    text-align: center !important;
+  }
+  
+  /* Footer */
+  .footer-link {
+    text-align: center;
+    display: block;
+  }
+  
+  .footer-bottom-links {
+    text-align: center;
+  }
+  
+  .footer-bottom-links a {
+    display: block;
+    margin: 10px 0;
+  }
+}
